@@ -2,7 +2,7 @@ import re
 from string import Template
 from typing import Any, Dict, Optional
 
-from embedchain.config.BaseConfig import BaseConfig
+from embedchain.config.base_config import BaseConfig
 from embedchain.helper.json_serializable import register_deserializable
 
 DEFAULT_PROMPT = """
@@ -67,6 +67,7 @@ class BaseLlmConfig(BaseConfig):
         deployment_name: Optional[str] = None,
         system_prompt: Optional[str] = None,
         where: Dict[str, Any] = None,
+        query_type: Optional[str] = None,
     ):
         """
         Initializes a configuration class instance for the LLM.
@@ -112,6 +113,7 @@ class BaseLlmConfig(BaseConfig):
         self.top_p = top_p
         self.deployment_name = deployment_name
         self.system_prompt = system_prompt
+        self.query_type = query_type
 
         if self.validate_template(template):
             self.template = template
